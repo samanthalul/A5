@@ -3,10 +3,12 @@
 </script>
 
 <template>
-  
+    <RouterView/>
     
 </template>
 
 <style scoped>
-
+    body{
+        background-color: aqua;
+    }
 </style>
