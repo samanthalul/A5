@@ -3,7 +3,7 @@
  
 <template>
   <div>
-    <img  src="https://prospected.com/wp-content/uploads/2019/07/73-Best-Movie-Templates-in-2019.jpg"
+    <img  src="https://cdn.cnn.com/cnnnext/dam/assets/141007105341-cnn-films-background-full-169.jpg"
       alt="MovieBackground">
     <p class="formatp"> Movies not for you </p>
   </div>
@@ -13,7 +13,7 @@
 <style scoped>
 .formatp {
   position: absolute;
-  top: 50%;
+  top: 40%;
   width: 100%;
   text-align: center;
   
@@ -23,7 +23,15 @@
 
 img {
   background-size: cover;
+  border-color: aqua;
+  opacity:80%;
+  margin-left: auto;
+  margin:0;
   margin-left:-10px;
-  opacity:0.;
+  border-width:5px;
+  border-style:solid;
+  width:1255px;
+  display: block;
+  margin-right: auto;
 }
 </style>
