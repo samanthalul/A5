@@ -1,6 +1,8 @@
 <script setup>
+import {ref} from "vue";
+import axios from "axios";
 const props = defineProps(["id"]);
-const emits = defineEmits(["toggleModal"]);
+const
 </script>
 
 <template>
