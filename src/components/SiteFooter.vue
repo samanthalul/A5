@@ -19,12 +19,12 @@
   </div>
 </template>
 <style scoped>
-.company {
+.troll {
   color: white;
   font-size: 15px;
   font-family: "Play", sans-serif;
   position: relative;
-  bottom: 400px;
+  text-align: center;
   left: 25px;
 }
 </style>
