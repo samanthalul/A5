@@ -1,16 +1,28 @@
 <script setup>
-import {ref} from "vue";
-import axios from "axios";
+import axios from 'axios';
 const props = defineProps(["id"]);
-const
+const emits = defineEmits(["toggleModal"]);
+const info = await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
+  params: {
+    api_key: "f944b70daa59b60504fca0c383e63483",
+    append_to_response: "videos"
+  },
+})
+console.log(info)
 </script>
 
 <template>
+
   <Teleport to="body">
     <div class="modal-outer-container" @click.self="emits('toggleModal')">
       <div class="modal-inner-container">
         <button class="close-button" @click="emits('toggleModal')">X</button>
-        <h1>{{ props.id }}</h1>
+        <img :src="`https://image.tmdb.org/t/p/w500${info.data.poster_path}`" alt="">
+        <h1> {{ info.data.original_title }} </h1>
+        <p> Release Date: {{ info.data.release_date }} - Rating: {{ info.data.vote_average }} - Stars Popularity:
+          {{ info.data.popularity }} <br> Box Office: {{ info.data.revenue }} USD </p>
+        <iframe
+          :src="`https://www.youtube.com/embed/${info.data.videos.results.filter((video) => video.type === 'Trailer').at(0).key}`"></iframe>
       </div>
     </div>
   </Teleport>
@@ -28,14 +40,17 @@ const
   height: 100vh;
   background: #00000099;
   z-index: 3;
+  font-size: 20px;
+  font-family: 'Bangers', cursive;
 }
 
 .modal-outer-container .modal-inner-container {
-  background-color: #1F2123;
+  background-color: rgb(29, 28, 28);
   color: white;
   width: clamp(280px, 100%, 800px);
   height: 400px;
   position: relative;
+
 }
 
 .modal-outer-container .modal-inner-container .close-button {
@@ -47,5 +62,23 @@ const
   font-weight: bold;
   font-size: 1.25rem;
   color: white;
+}
+
+img {
+  width: 250px;
+  height: 390px;
+  float: left;
+  border-style: solid;
+  border-color: rgb(33, 8, 156);
+  border-width: 2px;
+}
+
+iframe {
+  border-style: solid;
+  aspect-ratio: 16 / 9;
+  border-color: rgb(33, 8, 156);
+  border-width: 5px;
+  margin-left:100px;
+  margin-top:30px;
 }
 </style>

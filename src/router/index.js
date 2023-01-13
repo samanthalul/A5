@@ -14,9 +14,10 @@ const router = createRouter({
           path: '/account',
           component: LoginView
         },
-        {path:'/purchase',
+        {
+          path:'/purchase',
          component: PurchaseView
-        }
+        },
     ],
 });
 

@@ -1,62 +1,70 @@
 <script setup>
-import { ref } from "vue";
+import SiteFooter from "../components/SiteFooter.vue";
 import axios from "axios";
-import SiteModal1Vue from "../components/SiteModal (1).vue";
-const movies = ref("");
-const response = ref(null);
+import { ref } from 'vue';
+import SiteModal from '../components/SiteModal (1).vue';
 const showModal = ref(false);
-const selectedid = ref(0);
-
-const openmodal = (id) => {
+const selectedId = ref(0);
+const openModal = (id) => {
   showModal.value = true;
-  selectedid.value = id;
+  selectedId.value = id;
 };
-const closemodal = () => {
+const closeModal = () => {
   showModal.value = false;
 };
 
-const getData = async (url, params) => {
-  try {
-    return await axios.get(url, params);
-  } catch (error) {
-    console.log(error);
+const data = (await axios.get("https://api.themoviedb.org/3/trending/movie/week", {
+  params: {
+    api_key: "f944b70daa59b60504fca0c383e63483"
   }
-};
-
-const getMovies = async () => {
-  console.log(movie.value);
-  response.value = (
-    await getData("https://api.themoviedb.org/3/trending/movies/week", {
-      params: {
-        api_key: "24230a1cad348053b89210c835f908ae",
-      },
-    })
-  ).data["results"];
-};
-
-await getMovies();
+})).data.results;
+console.log(data)
 </script>
 
 <template>
-  <h1>Trending Movies</h1>
-  <div v-for="result in response" class="grid-container">
-    <img
-      @click="openModal(result.id)"
-      v-bind:src="'https://image.tmdb.org/t/p/w500/' + result.poster_path"
-    />
+  <div>
+    <h1> movies that are just for me and no one else!</h1>
+
   </div>
-  <SiteModal1Vue
-    >v-if="showModal" @toggleModal='closeModal()' :id="selectedId</SiteModal1Vue
-  >
+
+  <div>
+    <img v-for="movie in data" @click="openModal(movie.id)" class="poster"
+      :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="">
+  </div>
+  <SiteModal v-if="showModal" @toggleModal="closeModal()" :id="selectedId" />
+  <div>
+    <SiteFooter />
+  </div>
 </template>
 
 <style scoped>
-.grid-container {
-  display: flex;
-  display: inline-grid;
-  align-content: space-evenly;
-  padding: 15px;
-  gap: 10%;
-  margin-bottom: -260px;
+h1 {
+  color: white;
+  font-family: 'Zen Dots', cursive;
+  padding: 20px;
+  font-size: 25px;
+  text-align: center;
+  font-size: 40px;
+}
+
+img {
+  width: 270px;
+  border-style: solid;
+  border-color: rgb(33, 8, 156);
+  border-width: 15px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+
+footer {
+  font-size: 15px;
+  font-family: 'Play', sans-serif;
+  text-align: center;
+  padding: 3px;
+  background-color: rgb(33, 8, 156);
+  color: navy;
+  position: relative;
+  bottom: -10px;
+
 }
 </style>
