@@ -3,9 +3,9 @@
  
 <template>
   <div class="header-container">
-    <suspense>
+    <Suspense>
       <RouterView />
-    </suspense>
+    </Suspense>
 
   </div>
 </template>

@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 const username = ref("");
 const password = ref("");
 const error = ref(false);
+
 const login = () => {
   if (username.value === "tmdb" && password.value === "movies") {
     router.push("/purchase");
@@ -41,24 +43,28 @@ const login = () => {
   font-family: "Play", sans-serif;
   line-height: 10px;
 }
+
 form {
   display: flex;
   flex-direction: column;
   column-gap: 20px;
 }
+
 form input {
   padding: 10px;
   color: black;
   font-size: 15px;
   margin-top: 10px;
 }
+
 .error {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
   margin-top: 10px;
-  font-size:30px;
+  font-size: 30px;
 }
+
 .background {
   margin-top: -50px;
 }

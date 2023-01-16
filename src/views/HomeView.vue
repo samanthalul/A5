@@ -7,9 +7,9 @@ import SiteFooter from "../components/SiteFooter.vue";
 <template>
     <div>
         <h1></h1>
-        <SiteHeader/>
-        <SiteHero/>
-        <SiteFooter/>
+        <SiteHeader />
+        <SiteHero />
+        <SiteFooter />
     </div>
 </template>
 

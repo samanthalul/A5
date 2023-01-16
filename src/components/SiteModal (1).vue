@@ -1,10 +1,12 @@
 <script setup>
 import axios from 'axios';
+
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
+
 const info = await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
   params: {
-    api_key: "f944b70daa59b60504fca0c383e63483",
+    api_key: "24230a1cad348053b89210c835f908ae",
     append_to_response: "videos"
   },
 })
@@ -78,7 +80,7 @@ iframe {
   aspect-ratio: 16 / 9;
   border-color: rgb(33, 8, 156);
   border-width: 5px;
-  margin-left:100px;
-  margin-top:30px;
+  margin-left: 100px;
+  margin-top: 30px;
 }
 </style>

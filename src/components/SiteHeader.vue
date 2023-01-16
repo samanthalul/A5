@@ -14,8 +14,9 @@
 
 <style  scoped>
 .header {
+  text-decoration: underline;
   text-align: center;
-  font-size: 25px;
+  font-size: 50px;
   /* margin-top: -60px; */
 }
 </style>
