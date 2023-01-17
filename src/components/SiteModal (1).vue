@@ -25,12 +25,24 @@ console.log(info)
           {{ info.data.popularity }} <br> Box Office: {{ info.data.revenue }} USD </p>
         <iframe
           :src="`https://www.youtube.com/embed/${info.data.videos.results.filter((video) => video.type === 'Trailer').at(0).key}`"></iframe>
+          <button
+          @click="
+            store.addToCart(props.id, {
+              id: data.id,
+              poster: data.poster_path,
+              title: data.title,
+              date: data.release_date,
+            })
+          "
+        >
+          Purchase
+        </button>
       </div>
     </div>
   </Teleport>
 </template>
 
-<style scoped>
+<style scoped> 
 .modal-outer-container {
   position: fixed;
   top: 0;
