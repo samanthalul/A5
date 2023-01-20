@@ -17,7 +17,7 @@ export const useStore = defineStore('store', {
           include_adult: false,
         }
       })).data.results;
-      
+
       this.movies = data.map((movie) => {
         return {
           id: movie.id,

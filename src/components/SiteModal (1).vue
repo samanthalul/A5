@@ -1,20 +1,20 @@
 <script setup>
-import axios from 'axios';
+import axios from "axios";
+import { useStore } from "../store/index.js";
 
+const store = useStore();
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
-
 const info = await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
   params: {
     api_key: "24230a1cad348053b89210c835f908ae",
-    append_to_response: "videos"
+    append_to_response: "videos",
   },
-})
-console.log(info)
+});
+console.log(info);
 </script>
 
 <template>
-
   <Teleport to="body">
     <div class="modal-outer-container" @click.self="emits('toggleModal')">
       <div class="modal-inner-container">
@@ -25,74 +25,81 @@ console.log(info)
           {{ info.data.popularity }} <br> Box Office: {{ info.data.revenue }} USD </p>
         <iframe
           :src="`https://www.youtube.com/embed/${info.data.videos.results.filter((video) => video.type === 'Trailer').at(0).key}`"></iframe>
-          <button
-          @click="
-            store.addToCart(props.id, {
-              id: data.id,
-              poster: data.poster_path,
-              title: data.title,
-              date: data.release_date,
-            })
-          "
-        >
-          Purchase
+
+        <button @click="
+          store.addToCart(props.id, {
+            id: info.data.id,
+            poster: info.data.poster_path,
+            title: info.data.title,
+            date: info.data.release_date,
+          })
+        ">
+          Add To Cart
         </button>
       </div>
     </div>
   </Teleport>
 </template>
 
-<style scoped> 
+<style scoped>
 .modal-outer-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background: #00000099;
-  z-index: 3;
-  font-size: 20px;
-  font-family: 'Bangers', cursive;
-}
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100vw;
+   height: 100vh;
+   background: #00000099;
+   z-index: 3;
+   font-size: 20px;
+   font-family: 'Bangers', cursive;
+ }
 
-.modal-outer-container .modal-inner-container {
-  background-color: rgb(29, 28, 28);
-  color: white;
-  width: clamp(280px, 100%, 800px);
-  height: 400px;
-  position: relative;
+ .modal-outer-container .modal-inner-container {
+   background-color: rgb(29, 28, 28);
+   color: white;
+   width: clamp(280px, 100%, 800px);
+   height: 400px;
+   position: relative;
 
-}
+ }
 
-.modal-outer-container .modal-inner-container .close-button {
-  position: absolute;
-  right: 0px;
-  padding: 1rem;
-  border: none;
-  background: #1F2123;
-  font-weight: bold;
-  font-size: 1.25rem;
-  color: white;
-}
+ .modal-outer-container .modal-inner-container .close-button {
+   position: absolute;
+   right: 0px;
+   padding: 1rem;
+   border: none;
+   background: #1F2123;
+   font-weight: bold;
+   font-size: 1.25rem;
+   color: white;
+   cursor: pointer;
+ }
 
-img {
-  width: 250px;
-  height: 390px;
-  float: left;
-  border-style: solid;
-  border-color: rgb(33, 8, 156);
-  border-width: 2px;
-}
+ img {
+   width: 250px;
+   height: 390px;
+   float: left;
+   border-style: solid;
+   border-color: rgb(33, 8, 156);
+   border-width: 2px;
+ }
 
-iframe {
-  border-style: solid;
-  aspect-ratio: 16 / 9;
-  border-color: rgb(33, 8, 156);
-  border-width: 5px;
-  margin-left: 100px;
-  margin-top: 30px;
-}
+ iframe {
+   border-style: solid;
+   aspect-ratio: 16 / 9;
+   border-color: rgb(33, 8, 156);
+   border-width: 5px;
+   margin-left: 100px;
+   margin-top: 30px;
+ }
+
+ button {
+   cursor: pointer;
+   font-size: 20px;
+   margin-left: 45px;
+   margin-bottom: -50px;
+ }
 </style>

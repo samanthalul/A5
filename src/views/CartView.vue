@@ -8,6 +8,7 @@ const store = useStore();
     <img :src="`https://image.tmdb.org/t/p/w500${movie.poster}`" />
     <h1>{{ movie.title }}</h1>
     <h1>{{ movie.date }}</h1>
+    <h1>{{ movie.overview }}</h1>
     <button @click="store.removeFromCart(movie.id)">Remove</button>
   </div>
 </template>
@@ -16,5 +17,11 @@ const store = useStore();
 img {
   width: 200px;
   aspect-ratio: 2 / 3;
+}
+button{
+  cursor:pointer;
+  font-size: 20px;
+  background-color:red;
+  color:aqua;
 }
 </style>

@@ -62,7 +62,7 @@ const getGenres = async () => {
 <style scoped>
 .purchase-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 img {
@@ -73,6 +73,7 @@ img {
   Width: 200px;
   height: 50px;
   font-size:40px;
+  cursor:pointer;
 }
 .Banana2{
   width:200px;
@@ -80,6 +81,7 @@ img {
   margin-top:-20px;
   padding:0px;
   font-size: 40px; 
+  cursor:pointer;
 }
 
 
@@ -98,6 +100,7 @@ img {
   border-width: 15px;
   margin-right: 10px;
   margin-top: 15px;
+  cursor:pointer;
 }
 footer {
   font-size: 15px;
